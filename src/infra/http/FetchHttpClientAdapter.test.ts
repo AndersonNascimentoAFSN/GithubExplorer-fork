@@ -59,7 +59,7 @@ describe.only("FetchHttpClientAdapter", () => {
     });
   });
 
-  it.only("should handle fetch errors gracefully and return an empty body", async () => {
+  it("should handle fetch errors gracefully and return an empty body", async () => {
     const sut = makeSut();
     const request: HttpRequest = { url, method: "GET" };
 
