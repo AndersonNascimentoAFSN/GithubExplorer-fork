@@ -14,8 +14,12 @@ export class FetchHttpClientAdapter implements HttpClientProtocol {
         headers: data.headers,
       });
     } catch (error) {
-      const fetchError = error as Response;
-      fetchResponse = fetchError;
+      const fetchError = error as Error;
+
+      fetchResponse = {
+        status: 500,
+        json: async () => ({ error: fetchError.message }),
+      } as Response;
     }
 
     const parsedResponse = await this.adapt(fetchResponse);
